@@ -6,12 +6,6 @@ Notes created while learning ROS2, intended for personal reference but made publ
 
 To read on GitBook \(better formatted\) go [here](https://n-fry.gitbook.io/ros2-notes/)
 
-```text
-echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
-```
-
-After building or if you get errors about things not being found, make sure you `source .bashrc`
-
 ## Table of contents
 
 * [ROS2 Basics](ros2-basics.md)
