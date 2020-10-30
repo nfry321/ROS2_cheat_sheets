@@ -8,6 +8,8 @@ description: Terminal only install for robots using Ubuntu Server 20.04 and ROS2
 
 ## Install Ubuntu 20.04 Server
 
+This way should mean you can configure wi-fi before first boot then ssh in using the static ip you set, so no monitor or keyboard is needed.
+
 \(Based on this [https://raspberrypi.stackexchange.com/a/113642](https://raspberrypi.stackexchange.com/a/113642)\)
 
 1. Image the SD Card using Raspberry Pi Imager v 1.3 selecting the 'UNBUNTU 20.04 LTS \(RASBERRY PI 3/4\)\(64-bit\) image.  \(or download from here [https://ubuntu.com/download/raspberry-pi](https://ubuntu.com/download/raspberry-pi) and use balena etcher\)
@@ -89,4 +91,5 @@ Official instructions here: [https://index.ros.org/doc/ros2/Installation/Foxy/Li
 5. Source every time terminal runs `echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc`
 6. Install auto complete `sudo apt install python3-argcomplete`
 7. Try `ros2 --help` to check if it is installed - if ros2 command is not recognised check that you sourced it in step 4. 
+8. Install colcon common extensions and source the auto complete bash script `sudo apt install python3-colcon-common-extensions`
 
