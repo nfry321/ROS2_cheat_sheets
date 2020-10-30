@@ -3,7 +3,7 @@ Notes created while learning ROS2, intended for personal reference but made publ
 
 # Table of contents
 
-* [ROS2 Basics](README.md)
+* [ROS2 Basics](ROS2-Basics.md)
 * [Install on RPi](install-on-rpi.md)
 
 # Sources
