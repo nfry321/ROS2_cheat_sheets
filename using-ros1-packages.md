@@ -23,11 +23,29 @@ There are some tools to do this, notably from Amazon, which may do much of the h
 
 {% embed url="https://index.ros.org/doc/ros2/Contributing/Examples-and-Tools-for-ROS1----ROS2-Migrations/" %}
 
+Tutorial to look at:
+
+{% embed url="https://industrial-training-master.readthedocs.io/en/melodic/\_source/session7/ROS1-to-ROS2-porting.html" %}
+
 
 
 ## 2. Bridge
 
 {% embed url="https://github.com/ros2/ros1\_bridge/tree/foxy" %}
+
+Tutorial to look at:
+
+{% embed url="https://www.allisonthackston.com/articles/bridging\_ros\_ros2.html" %}
+
+
+
+## 3. SOSS
+
+Might be a 3rd option, needs looking into
+
+{% embed url="https://discourse.ros.org/t/soss-a-whole-new-approach-to-your-ros-1-ros-2-bridge/17040" %}
+
+{% embed url="https://soss.docs.eprosima.com/en/latest/getting\_started.html" %}
 
 
 
