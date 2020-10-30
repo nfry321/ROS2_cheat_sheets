@@ -1,6 +1,8 @@
 # ROS2 Cheat Sheets
 Notes created while learning ROS2, intended for personal reference but made public in case they are useful to others
 
+To read on GitBook (better formatted) go [here](https://app.gitbook.com/@n-fry/s/ros2-notes/)
+
 # Table of contents
 
 * [ROS2 Basics](ROS2-Basics.md)
