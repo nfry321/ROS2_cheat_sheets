@@ -2,7 +2,7 @@
 description: In progress
 ---
 
-# Run on multiple machines
+# Run on Multiple Machines
 
 ROS2 does not need a ROS master so simply run the nodes and they will communicate over an ip network out of the box. 
 
