@@ -1106,3 +1106,11 @@ Run a launch file:
 * Don’t forget to source your environment
 * Start the launch file with “ros2 launch &lt;package&gt; &lt;name\_of\_the\_file&gt;
 
+## Install Packages
+
+
+
+```text
+$ sudo apt-get install ros-<ros_version>-PACKAGE
+```
+

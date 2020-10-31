@@ -10,6 +10,7 @@ Notes created while learning ROS2, intended for personal reference but made publ
 
 * [ROS2 Basics](ros2-basics.md)
 * [Install on RPi](install-on-rpi.md)
+* [Run on multiple machines](run-on-multiple-platforms.md)
 
 Pages added here when they are complete \(ish\).
 
