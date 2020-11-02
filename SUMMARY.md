@@ -8,3 +8,8 @@
 * [Using ROS1 Packages](using-ros1-packages.md)
 * [Links](links.md)
 
+## Package Tests
+
+* [Teleop](package-tests/teleop.md)
+* [Picam](package-tests/picam.md)
+
