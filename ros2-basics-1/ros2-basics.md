@@ -8,6 +8,8 @@ description: >-
 
 ## Creating a Workspace
 
+Instructions here [https://index.ros.org/doc/ros2/Tutorials/Workspace/Creating-A-Workspace/](https://index.ros.org/doc/ros2/Tutorials/Workspace/Creating-A-Workspace/#source-the-overlay)
+
 In home dir
 
 ```text
@@ -19,7 +21,13 @@ colcon build
 
 Creates sub folders within workspace.
 
-In `install` folder there is a `setup.bash` script. This needs sourcing \(in a similar way to ros2 needs sourcing in terminal\).
+In `install` folder there is a `local_setup.bash` script. This needs sourcing \(in a similar way to ros2 needs sourcing in terminal\). 
+
+**This must be done in new terminal** [https://index.ros.org/doc/ros2/Tutorials/Workspace/Creating-A-Workspace/\#source-the-overlay](https://index.ros.org/doc/ros2/Tutorials/Workspace/Creating-A-Workspace/#source-the-overlay)
+
+```python
+echo "source ~/ros2_ws/install/local_setup.bash" >> ~/.bashrc
+```
 
 {% hint style="info" %}
 For new setup; install colcon common extensions and source the auto complete bash script
