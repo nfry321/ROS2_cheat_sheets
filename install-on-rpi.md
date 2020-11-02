@@ -92,4 +92,7 @@ Official instructions here: [https://index.ros.org/doc/ros2/Installation/Foxy/Li
 6. Install auto complete `sudo apt install python3-argcomplete`
 7. Try `ros2 --help` to check if it is installed - if ros2 command is not recognised check that you sourced it in step 4. 
 8. Install colcon common extensions and source the auto complete bash script `sudo apt install python3-colcon-common-extensions`
+9. Source `colcon_cd` to easily swap to package directories. 
+
+   `echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc`
 
