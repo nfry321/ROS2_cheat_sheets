@@ -41,7 +41,7 @@ git clone --single-branch --branch <branchname> <remote-repo>
 rosdep install -i --from-path src --rosdistro foxy -y
 ```
 
-6. Then `colcon build` remember you can use `--packages-select`  or --packages-up-to to inc dependencies.
+6. Then `colcon build` remember you can use `--packages-select`  or `--packages-up-to` to inc dependencies.
 
 7. Remember you need to `source ~/ros2_ws/install/local_setup.bash` \(which should be in /.bashrc\) in other terminal windows to use newly built packages.
 
