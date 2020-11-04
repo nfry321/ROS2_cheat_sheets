@@ -1,5 +1,5 @@
 ---
-description: TL;DR for keyboard teleop use first pkg
+description: TL;DR for keyboard teleop use teleop_twist_keyboard
 ---
 
 # Teleop
