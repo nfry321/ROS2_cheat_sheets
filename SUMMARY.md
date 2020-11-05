@@ -13,6 +13,6 @@
 
 ## Package Tests
 
-* [Teleop](package-tests/teleop.md)
+* [Teleoperation](package-tests/teleop.md)
 * [Picam](package-tests/picam.md)
 

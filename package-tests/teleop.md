@@ -2,7 +2,7 @@
 description: TL;DR for keyboard teleop use teleop_twist_keyboard
 ---
 
-# Teleop
+# Teleoperation
 
 ## Keyboards
 
