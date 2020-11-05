@@ -41,13 +41,27 @@ But...It only uses the arrow keys and no speed control so the other package is b
 
 ## Joysticks
 
-Searching ros index reveals 3 options
+Searching ros index reveals 3 relevant foxy packages
 
-1. [Teleop\_twist\_joy](https://index.ros.org/p/teleop_twist_joy/github-ros2-teleop_twist_joy/#foxy)
-2. [Joy teleop from Teleop tools](https://index.ros.org/p/joy_teleop/github-pal-robotics-joy_teleop/#foxy)
-3. [joy](https://index.ros.org/p/joy/github-ros-drivers-joystick_drivers/#foxy) from joystick\_drivers package
+1. [joy](https://index.ros.org/p/joy/github-ros-drivers-joystick_drivers/#foxy) - Driver to interface with joystick and output joy messages
+2. [Teleop\_twist\_joy](https://index.ros.org/p/teleop_twist_joy/github-ros2-teleop_twist_joy/#foxy) - subs to joy and pubs twist messages \(robot velocity commands\)
+3. [Joy teleop from Teleop tools](https://index.ros.org/p/joy_teleop/github-pal-robotics-joy_teleop/#foxy)
 
-### 1. Teleop Twist Joy
+### 1. Joy
+
+> The joy package contains joy\_node, a node that interfaces a generic joystick to ROS 2. This node publishes a "Joy" message, which contains the current state of each one of the joystick's buttons and axes.
+
+Check the readme for Topics & Parameters:
+
+{% embed url="https://github.com/ros-drivers/joystick\_drivers/tree/ros2/joy" caption="Readme" %}
+
+Installed by default, has 2 nodes `joy_enumerate_devices` and `joy_node`.
+
+The first one lists the available devices and their ID, the 2nd is the node to connect to it, I didn't require any parameters beyond the defaults.
+
+This may be useful if you have problems with the joystick being recognised, its for ROS1 but seems the same: [http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick](http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick)
+
+### 2. Teleop Twist Joy
 
 The teleop\_node republishes Joy messages as scaled [geometry\_msgs/Twist](http://docs.ros.org/en/api/geometry_msgs/html/msg/Twist.html) messages.
 
@@ -61,19 +75,11 @@ No ROS2 Documentation, but is for ROS1 which should be similar: [http://wiki.ros
 ros2 run teleop_twist_joy teleop_node 
 ```
 
-###  2. Teleop Tools joy\_teleop
+###  3. Teleop Tools joy\_teleop
 
 ```text
 ros2 run joy_teleop joy_teleop
 ```
 
-### 3. Joy
-
-> The joy package contains joy\_node, a node that interfaces a generic joystick to ROS 2. This node publishes a "Joy" message, which contains the current state of each one of the joystick's buttons and axes.
-
-{% embed url="https://github.com/ros-drivers/joystick\_drivers" %}
-
-This package publishes all of the joystick buttons.
-
-This may be useful when looking into joysticks: [http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick](http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick)
+### 
 
