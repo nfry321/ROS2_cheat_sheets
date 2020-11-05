@@ -61,6 +61,10 @@ The first one lists the available devices and their ID, the 2nd is the node to c
 
 This may be useful if you have problems with the joystick being recognised, its for ROS1 but seems the same: [http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick](http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick)
 
+There are tables of button index number for common joysticks in section 5 here: [http://wiki.ros.org/joy](http://wiki.ros.org/joy)
+
+
+
 ### 2. Teleop Twist Joy
 
 The teleop\_node republishes Joy messages as scaled [geometry\_msgs/Twist](http://docs.ros.org/en/api/geometry_msgs/html/msg/Twist.html) messages.
@@ -68,6 +72,18 @@ The teleop\_node republishes Joy messages as scaled [geometry\_msgs/Twist](http:
 So doesn't read the joystick itself \(use _joy_ for that\) but translates the raw buttons to a message type which is often used to describe robot motion so plug into a further controller node \(eg used in Husky\).
 
 This has an xbox config file, but need to work out how to run it using that! \(because by default \(ps3?\) is it using the trigger button values\)
+
+Launching using the file provided by the package:
+
+```text
+ros2 launch teleop_twist_joy teleop-launch.py
+```
+
+{% hint style="warning" %}
+This also starts the `joy` node so don't start one independently or there will be two with the same name
+{% endhint %}
+
+
 
 No ROS2 Documentation, but is for ROS1 which should be similar: [http://wiki.ros.org/teleop\_twist\_joy](http://wiki.ros.org/teleop_twist_joy)
 

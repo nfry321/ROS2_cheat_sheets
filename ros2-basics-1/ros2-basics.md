@@ -1022,6 +1022,18 @@ $ ros2 run my_py_pkg node_name --ros-args -p parametername:=value
 
 Allows setting of parameter, renaming of nodes at runtime and running of many nodes without having to do it all from the terminal each time.
 
+### Provided
+
+It is possible to launch a launch file provided by a package. When it is provided by a package, the syntax is: \([source](https://index.ros.org/doc/ros2/Tutorials/Launch-Files/Creating-Launch-Files/#ros2-launch)\)
+
+```text
+ros2 launch <package_name> <launch_file_name>
+```
+
+Like parameters in nodes, launch files can have arguments that can be changed at run time. Use `--show-arguments` to see.
+
+### Custom
+
 They can be created in any package but it is better to create a new package, often called robotname\_bringup.
 
 ```text
