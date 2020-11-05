@@ -67,7 +67,7 @@ The teleop\_node republishes Joy messages as scaled [geometry\_msgs/Twist](http:
 
 So doesn't read the joystick itself \(use _joy_ for that\) but translates the raw buttons to a message type which is often used to describe robot motion so plug into a further controller node \(eg used in Husky\).
 
-This has an xbox config file, but need to work out how to run it using that!
+This has an xbox config file, but need to work out how to run it using that! \(because by default \(ps3?\) is it using the trigger button values\)
 
 No ROS2 Documentation, but is for ROS1 which should be similar: [http://wiki.ros.org/teleop\_twist\_joy](http://wiki.ros.org/teleop_twist_joy)
 
