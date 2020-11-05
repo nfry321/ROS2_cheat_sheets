@@ -76,7 +76,7 @@ This has an xbox config file, but need to work out how to run it using that! \(b
 Launching using the file provided by the package:
 
 ```text
-ros2 launch teleop_twist_joy teleop-launch.py
+ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox'
 ```
 
 {% hint style="warning" %}
