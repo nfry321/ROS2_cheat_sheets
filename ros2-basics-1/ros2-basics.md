@@ -1030,7 +1030,7 @@ It is possible to launch a launch file provided by a package. When it is provide
 ros2 launch <package_name> <launch_file_name>
 ```
 
-Like parameters in nodes, launch files can have arguments that can be changed at run time. Use `--show-arguments` to see.
+Like parameters in nodes, launch files can have arguments that can be changed at run time. Use `--show-arguments` to see and append the argument to the end of the launch command to set `<argument>:=<value>`
 
 ### Custom
 
