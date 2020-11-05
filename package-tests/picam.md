@@ -16,6 +16,8 @@ Quick google & check of ros index reveals 3 possible packages:
 
 The 3rd link was found in an [issue](https://github.com/christianrauch/raspicam2_node/issues/11#issuecomment-699931002) in the 2nd link and is both more recently updated and is using a more generic method so maybe useful for other cameras too. Therefore trying that one first.
 
+### V4l install
+
 It is using video4linux, so first install this
 
 ```text
@@ -35,7 +37,15 @@ v4l2-ctl --info -d 14
 v4l2-ctl --list-formats -d 14
 ```
 
-First tested without the additional plugins for sending compressed images so install via [Github clone](../ros2-basics-1/installing-packages.md#git-repos) , run command to update dependencies will get image-transport, then build package.
+### ros2\_v4l2\_camera install
+
+Install via [Github clone](../ros2-basics-1/installing-packages.md#git-repos) , run command to update dependencies, this will get image-transport.
+
+Clone the dependancies for compressed transport [https://gitlab.com/boldhearts/ros2\_v4l2\_camera/-/tree/foxy/\#compressed-transport](https://gitlab.com/boldhearts/ros2_v4l2_camera/-/tree/foxy/#compressed-transport)
+
+ Install the packages needed to build [https://gitlab.com/boldhearts/ros2\_v4l2\_camera/-/tree/foxy/\#building-ubuntu](https://gitlab.com/boldhearts/ros2_v4l2_camera/-/tree/foxy/#building-ubuntu)
+
+Then `colcon build`.
 
 To run the node use this command, with the device parameter set to 14\(?\) for a picam.
 
@@ -67,6 +77,14 @@ $ sudo apt install libopencv-dev python3-opencv
 ```
 
 Still could not open video stream, so openCV not the problem.
+
+
+
+## other options
+
+{% embed url="https://github.com/Kapernikov/cv\_camera" %}
+
+{% embed url="https://github.com/ros-drivers/usb\_cam/tree/ros2" %}
 
 
 
