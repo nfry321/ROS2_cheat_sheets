@@ -26,7 +26,7 @@ Has more keys mapped than other option, inc speed control.
 
 This has a recently updated foxy branch.
 
-Requires git clone install. 
+~~Requires git clone install.~~  As of 05/11/20 these have been added to foxy [https://discourse.ros.org/t/new-packages-for-foxy-fitzroy-2020-11-05/17140](https://discourse.ros.org/t/new-packages-for-foxy-fitzroy-2020-11-05/17140)
 
 Includes keyboard, mouse and joystick options.
 
