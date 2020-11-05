@@ -44,8 +44,8 @@ But...It only uses the arrow keys and no speed control so the other package is b
 Searching ros index reveals 3 relevant foxy packages
 
 1. [joy](https://index.ros.org/p/joy/github-ros-drivers-joystick_drivers/#foxy) - Driver to interface with joystick and output joy messages
-2. [Teleop\_twist\_joy](https://index.ros.org/p/teleop_twist_joy/github-ros2-teleop_twist_joy/#foxy) - subs to joy and pubs twist messages \(robot velocity commands\)
-3. [Joy teleop from Teleop tools](https://index.ros.org/p/joy_teleop/github-pal-robotics-joy_teleop/#foxy)
+2. [Teleop\_twist\_joy](https://index.ros.org/p/teleop_twist_joy/github-ros2-teleop_twist_joy/#foxy) - Good for simple driving: subs to joy and pubs twist messages \(robot velocity commands\)
+3. [Joy teleop from Teleop tools](https://index.ros.org/p/joy_teleop/github-pal-robotics-joy_teleop/#foxy) 
 
 ### 1. Joy
 
@@ -63,17 +63,15 @@ This may be useful if you have problems with the joystick being recognised, its 
 
 There are tables of button index number for common joysticks in section 5 here: [http://wiki.ros.org/joy](http://wiki.ros.org/joy)
 
-
-
 ### 2. Teleop Twist Joy
 
-The teleop\_node republishes Joy messages as scaled [geometry\_msgs/Twist](http://docs.ros.org/en/api/geometry_msgs/html/msg/Twist.html) messages.
+There was an [issue](https://github.com/ros2/teleop_twist_joy/issues/17) with with repo not having any documentation so in the process of figuring out how to use it I have updated its [readme](https://github.com/ros2/teleop_twist_joy/blob/eloquent/README.md) and the changes have been merged - so read that!
 
-So doesn't read the joystick itself \(use _joy_ for that\) but translates the raw buttons to a message type which is often used to describe robot motion so plug into a further controller node \(eg used in Husky\).
+The teleop\_node republishes Joy messages as scaled Twist messages.
 
-This has an xbox config file, but need to work out how to run it using that! \(because by default \(ps3?\) is it using the trigger button values\)
+So doesn't read the joystick itself \(uses `joy` for that\) but translates the raw buttons to a message type which is often used to describe \(differential drive\) robot motion \(eg used in Husky\).
 
-Launching using the file provided by the package:
+Launching using the file provided by the package and by choosing a config file as an argument:
 
 ```text
 ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox'
@@ -83,19 +81,43 @@ ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox'
 This also starts the `joy` node so don't start one independently or there will be two with the same name
 {% endhint %}
 
-
-
-No ROS2 Documentation, but is for ROS1 which should be similar: [http://wiki.ros.org/teleop\_twist\_joy](http://wiki.ros.org/teleop_twist_joy)
-
-```text
-ros2 run teleop_twist_joy teleop_node 
-```
-
 ###  3. Teleop Tools joy\_teleop
 
-```text
-ros2 run joy_teleop joy_teleop
+{% embed url="https://github.com/ros-teleop/teleop\_tools/tree/foxy-devel/joy\_teleop" %}
+
+This appears to be quite a widely applicable package, unlike the one above which is just for driving mobile bases, this can be used for humanoid robots. 
+
+Looking at the example [config](https://github.com/ros-teleop/teleop_tools/blob/foxy-devel/joy_teleop/config/joy_teleop_example.yaml) it seems like this can be used to map joystick commands to topics, actions and services. 
+
+To use setup the mappings you want in the config file then use a launch file to run it using that config.
+
+It is simple enough to edit the config file to replicate the functionality of the teleop\_twist\_joy package.
+
+```yaml
+joy_teleop:
+  ros__parameters:
+
+    drive:
+      type: topic
+      interface_type: geometry_msgs/msg/Twist
+      topic_name: cmd_vel
+      deadman_buttons: [0] #A
+      axis_mappings:
+        linear-x:
+          axis: 1
+          scale: 0.5
+          offset: 0
+        angular-z:
+          axis: 0
+          scale: 0.5
+          offset: 0
 ```
 
-### 
+Note that the Joy node needs to be started separately as this subs to it.
+
+```text
+ros2 launch joy_teleop example.launch.py
+```
+
+Note that the deadman doesnt currently work but there is a fix that hasn't been merged \([https://github.com/ros-teleop/teleop\_tools/issues/45](https://github.com/ros-teleop/teleop_tools/issues/45)\)
 
