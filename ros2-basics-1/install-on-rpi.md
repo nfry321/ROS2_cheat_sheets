@@ -74,7 +74,7 @@ power_state:
 
 7. Logon either at the console or remotely using ssh [ubuntu@x.x.x.x](mailto:ubuntu@x.x.x.x) \(get the address from your router, etc.\) 
 
-That's it: Headless, Wi-Fi'd Ubuntu 20.04 on Raspbery Pi 4b 
+That's it: Headless, Wi-Fi'd Ubuntu 20.04 on Raspbery Pi
 
 ## Install ROS2 Foxy
 
