@@ -56,6 +56,12 @@ If you have ROS\_DOMAIN\_ID set then it will not show the topic!
 check `echo ${ROS_DOMAIN_ID}` and if needed comment out of your .bashrc & reopen terminal
 {% endhint %}
 
+Check this issue for more details on how a domain ID can be configured if required: 
+
+{% embed url="https://github.com/micro-ROS/micro\_ros\_arduino/issues/21" %}
+
+
+
 ### docker agent
 
 The [readme](https://github.com/micro-ROS/micro_ros_arduino#how-to-use-the-precompiled-library) gives an example of an agent using docker. I got this to connect to the teensy, but unsure how/if it can connect to the rest of ROS2.
