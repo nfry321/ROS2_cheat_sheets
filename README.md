@@ -20,6 +20,7 @@ ROS2 Basics
 Package Tests 
 
 * [Teleop](package-tests/teleop.md)
+* [Micro-ros for Arduino](package-tests/micro-ros-for-arduino-ide.md)
 
 
 
