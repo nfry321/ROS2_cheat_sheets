@@ -13,7 +13,7 @@
 
 follow instructions in the github readme - 
 
-1. Download and include the pre-compiled library \(.zip\)
+1. Download pre-compiled library \(.zip\)
 2. Include it in your project using `Sketch -> Include library -> Add .ZIP Library...`
 3. [Patch Teensyduino](https://github.com/micro-ROS/micro_ros_arduino#patch-teensyduino)
 4. Try example sketches - they were listed under incompatible in my examples menu but did upload.
