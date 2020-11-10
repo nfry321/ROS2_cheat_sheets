@@ -519,7 +519,7 @@ $ ros2 topic hz /topic_name
 $ ros2 topic bw /node_name
 ```
 
-Publish ad-hoc to topic from terminal
+Publish ad-hoc to topic from terminal, -r is the rate in hz, can use --once instead. 
 
 ```text
 $ ros2 topic pub -r 10 /topic_name type/name "{data: Hello from Terminal}"

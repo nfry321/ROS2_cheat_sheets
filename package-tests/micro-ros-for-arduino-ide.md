@@ -50,15 +50,21 @@ Replace `[device]` with the result of `ls /dev/serial/by-id/*` this means even i
 ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/serial/by-id/usb-Teensyduino_USB_Serial_6922840-if00 -v6
 ```
 
-{% hint style="danger" %}
-If you have ROS\_DOMAIN\_ID set then it will not show the topic!
+{% hint style="warning" %}
+Your ROS\_DOMAIN\_ID must either be clear or match that set in the micro-ros node.
 
-check `echo ${ROS_DOMAIN_ID}` and if needed comment out of your .bashrc & reopen terminal
+check `echo ${ROS_DOMAIN_ID}`
 {% endhint %}
 
-Check this issue for more details on how a domain ID can be configured if required: 
+After [raising an issue](https://github.com/micro-ROS/micro_ros_arduino/issues/21#issuecomment-724558682) the inability to set the domain ID was fixed \(main author is very responsive so don't hesitate to reach out if needed!\). In version 0.0.2 now you can change the Domain ID of your nodes using something like:
 
-{% embed url="https://github.com/micro-ROS/micro\_ros\_arduino/issues/21" %}
+```text
+...
+rcl_node_options_t node_ops = rcl_node_get_default_options();
+node_ops.domain_id = 10;
+RCCHECK(rclc_node_init_with_options(&node, "my_node_name", "", &support, &node_ops));
+...
+```
 
 
 
