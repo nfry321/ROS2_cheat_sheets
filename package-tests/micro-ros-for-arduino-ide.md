@@ -81,7 +81,7 @@ docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agen
 ```
 
 I found [this](https://www.losant.com/blog/how-to-access-serial-devices-in-docker) helpful if you cant open the device. Replace `[your board port]` with `/dev/serial/by-id/<file_name_that_matches_your_device>` This means if the port number changes when unplugging it will still find the device. Use `ls /dev/serial/by-id/*` to find the name.  
-This docker command connects and I can see that data is being exchanged. But now what? Can't see any topics or nodes listed. When I ctrl+c docker the Teensy goes to error loop \(led flashes\). - could be due to domain\_id issue above.
+This docker command connects and I can see that data is being exchanged. But now what? Can't see any topics or nodes listed. When I ctrl+c docker the Teensy goes to error loop \(led flashes\). **- could be due to domain\_id issue above.**
 
 Presumably links to this tip in a [tutorial](https://micro-ros.github.io/docs/tutorials/core/first_application_linux/), but i don't want to go the docker route at the moment.
 

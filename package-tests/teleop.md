@@ -81,6 +81,8 @@ ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox'
 This also starts the `joy` node so don't start one independently or there will be two with the same name
 {% endhint %}
 
+On my install the configs are located here: `/opt/ros/foxy/share/teleop_twist_joy/config`.
+
 ###  3. Teleop Tools joy\_teleop
 
 {% embed url="https://github.com/ros-teleop/teleop\_tools/tree/foxy-devel/joy\_teleop" %}
