@@ -14,9 +14,11 @@ Obviously on an embedded device we can't run these packages but we can publish i
 
 #### Existing message definitions:
 
-* Single status message from a indivisual component of the robot; [DiagnosticStatus](http://docs.ros.org/en/api/diagnostic_msgs/html/msg/DiagnosticStatus.html) 
-* Whole robot status as array of DiagnosticStatus messaged; [DiagnosticArray](http://docs.ros.org/en/api/diagnostic_msgs/html/msg/DiagnosticArray.html)
-* Presumably for quick and simple debugging, label and a value; [KeyValue](http://docs.ros.org/en/api/diagnostic_msgs/html/msg/KeyValue.html)
+* Whole robot status as array of DiagnosticStatus messages; [DiagnosticArray](http://docs.ros.org/en/api/diagnostic_msgs/html/msg/DiagnosticArray.html)
+* Single status message from a individual component of the robot; [DiagnosticStatus](http://docs.ros.org/en/api/diagnostic_msgs/html/msg/DiagnosticStatus.html) 
+* Single parameter from the individual component. Can have an array of these within your DiagnosticStatus; [KeyValue](http://docs.ros.org/en/api/diagnostic_msgs/html/msg/KeyValue.html)
+
+Creating and filling in a message isn't super simple in micro-ros if it's not a basic type.
 
 
 
