@@ -70,7 +70,7 @@ RCCHECK(rclc_node_init_with_options(&node, "my_node_name", "", &support, &node_o
 
 ### docker agent
 
-The [readme](https://github.com/micro-ROS/micro_ros_arduino#how-to-use-the-precompiled-library) gives an example of an agent using docker. I got this to connect to the teensy, but unsure how/if it can connect to the rest of ROS2.
+The [readme](https://github.com/micro-ROS/micro_ros_arduino#how-to-use-the-precompiled-library) gives an example of an agent using docker. I got this to connect to the teensy, ~~but unsure how/if it can connect to the rest of ROS2.~~ Probably fixed by the domain id issue, but not tried.
 
 1. If required install docker `sudo snap install docker`
 2. run this, may need to preface with sudo or follow these [instructions](https://docs.docker.com/engine/install/linux-postinstall/)  
