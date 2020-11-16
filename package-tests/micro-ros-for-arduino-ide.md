@@ -36,11 +36,26 @@ You need an agent that communicates with the micro-ros node & the rest of ROS2
 In the [micro-ros setup repo ](https://github.com/micro-ROS/micro_ros_setup#building-micro-ros-agent)& in the [tutorial](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/freertos/)s it refers to building a micro-ros agent.
 
 ```text
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+
+# Update dependencies using rosdep
+sudo apt update && rosdep update
+rosdep install --from-path src --ignore-src -y
+
+# On ubuntu server had to install vcs to build (but hadn/t run the update line above)
+sudo apt-get install python3-vcstool
+
 ros2 run micro_ros_setup create_agent_ws.sh
 ros2 run micro_ros_setup build_agent.sh
 source install/local_setup.sh
 ros2 run micro_ros_agent micro_ros_agent serial --dev [device] -v6
 ```
+
+{% hint style="warning" %}
+On Pi3 line 11 takes a verrry long timer \(does it even complete?\)
+
+On Pi4 line 11 took 20 mins.
+{% endhint %}
 
 Replace `[device]` with the result of `ls /dev/serial/by-id/*` this means even if the device number changes when disconnecting it will find the device via the name.
 

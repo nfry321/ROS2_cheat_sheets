@@ -4,7 +4,7 @@ description: Terminal only install for robots using Ubuntu Server 20.04 and ROS2
 
 # Install on RPi
 
-> Currently tested on Pi 3, should work on pi 4
+> Tested on Pi 3 & 4
 
 ## Install Ubuntu 20.04 Server
 
@@ -14,7 +14,7 @@ This way should mean you can configure wi-fi before first boot then ssh in using
 
 1. Image the SD Card using Raspberry Pi Imager v 1.3 selecting the 'UNBUNTU 20.04 LTS \(RASBERRY PI 3/4\)\(64-bit\) image.  \(or download from here [https://ubuntu.com/download/raspberry-pi](https://ubuntu.com/download/raspberry-pi) and use balena etcher\)
 2. When imaging is completed, remove the SD Card and then reinsert it so that it is mounted. 
-3. Modify 'network-config' found on the SD Card so that it contains only the items in the example below. Comment out with \#, or remove, all other settings including the LAN ones. Enter any missing items. Be certain to maintain only the indentations shown. Use two spaces for each indentation. Remove all tab characters. Be especially careful if using Notepad++ as it will enter tabs wherever enter is used to start a new line. Replace the SSID with your wireless SSID and the PassPhrase with your wireless passphrase. When done, those two values should be wrapped in quotes. Save the modified file to the SD Card. 
+3. Modify 'network-config' found on the SD Card so that it contains only the items in the example below. Enter any missing items. Be certain to maintain only the indentations shown. Use two spaces for each indentation. Remove all tab characters. Be especially careful if using Notepad++ as it will enter tabs wherever enter is used to start a new line. Replace the SSID with your wireless SSID and the PassPhrase with your wireless passphrase. When done, those two values should be wrapped in quotes. Save the modified file to the SD Card. 
 
 ```text
 # This file contains a netplan-compatible configuration which cloud-init
@@ -46,18 +46,19 @@ Use `ip route show` to fill in gateway4. Look for something like "default via 19
 Use `systemd-resolve --status` and look for section that says "DNS servers" to fill in name servers" \(q to quit\)
 
 ```text
-dchp4: false 
-dchp6: false 
+dhcp4: false 
 addresses: [ip to set/24] 
 gateway4: 192.168.0.1 
 nameservers: 
   addresses: [194.168.4.100, 194.168.8.100] 
 ```
 
-{% hint style="warning" %}
-Need to test this step with the static ip stuff - works adding it after initial setup, but needs a monitor and keyboard or access to the router to find the ip to ssh in.
+{% hint style="danger" %}
+\(I may have typed something wrong but\) this works when just doing the dynamic wifi, but adding the static did not when done before first boot?
 
-Also probably want to keep the Ethernet bits in as it will likely be useful.
+TODO: Try with optional: false
+
+ - works adding it after initial setup \(Locate and edit with administrative privileges the `/etc/netplan/50-cloud-init.yaml)`, but needs a monitor and keyboard or access to the router to find the ip to ssh in.
 {% endhint %}
 
 4. Edit 'user-data' appending the additional lines shown below. Again, use spaces, not tabs and mind the indentation. 
@@ -87,7 +88,7 @@ Official instructions here: [https://index.ros.org/doc/ros2/Installation/Foxy/Li
 1. add the key:  `sudo apt-key adv --fetch-keys https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc`
 2. add the repository: `sudo apt-add-repository 'http://packages.ros.org/ros2/ubuntu'`
 3. and install \(base = no gui stuff\):  `sudo apt install ros-foxy-ros-base`
-4. Source ros2 ``source /opt/ros/foxy/setup.bash```
+4. Source ros2 `source /opt/ros/foxy/setup.bash`
 5. Source every time terminal runs `echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc`
 6. Install auto complete `sudo apt install python3-argcomplete`
 7. Try `ros2 --help` to check if it is installed - if ros2 command is not recognised check that you sourced it in step 4. 
@@ -101,4 +102,10 @@ echo​ "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~
 \(optional\) Source `colcon_cd` to easily swap to package directories. 
 
 `9. echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc`
+
+10. Installl build essentials for CMake to work.
+
+```text
+sudo apt-get update && sudo apt-get install build-essential
+```
 
