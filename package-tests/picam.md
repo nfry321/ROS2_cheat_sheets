@@ -121,13 +121,13 @@ ros2 run image_transport republish compressed --ros-args --remap in/compressed:=
 
 ####  Raspberry Pi Camera Rev 1.3.
 
-{% hint style="info" %}
+{% hint style="success" %}
 Working. Tested all of the above on RPi4 & Ubuntu 20.04.
 {% endhint %}
 
 #### Arducam OV9281 1MP Monochrome Global Shutter Camera 
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Publishing, haven't managed to view.
 {% endhint %}
 
@@ -162,7 +162,7 @@ On RPi with pi cam: Had to install the image\_tools package, so not included in 
 
 This 'works', the images are published and I can subscribe and see them for a bit but showimage freezes very quickly. 
 
-## other options
+## Other Options
 
 {% embed url="https://github.com/Kapernikov/cv\_camera" %}
 
