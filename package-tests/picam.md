@@ -1,8 +1,8 @@
 ---
-description: Testing streaming  to laptop
+description: Testing streaming to laptop
 ---
 
-# Picam
+# Pi camera
 
 ## Enable Pi camera on Ubuntu 20.04
 
@@ -116,6 +116,28 @@ If you remap to `/image` topic then you can use `ros2 run image_tools showimage`
 ```text
 ros2 run image_transport republish compressed --ros-args --remap in/compressed:=image_raw/compressed raw --remap out:=image
 ```
+
+### Camera Type
+
+####  Raspberry Pi Camera Rev 1.3.
+
+Working. Tested all of the above on RPi4 & Ubuntu 20.04.
+
+#### Arducam OV9281 1MP Monochrome Global Shutter Camera 
+
+This suggests that [only Rev. B is compatible with the V4L2 driver ](https://www.arducam.com/product/ov9281-mipi-1mp-monochrome-global-shutter-camera-module-m12-mount-lens-raspberry-pi/)and I have an earlier board, but it appears to be publishing images.
+
+There are [reports](https://www.arducam.com/forums/topic/no-activity-from-ov9281-with-v4l2-ctl-on-rpi-4/) of it not working on Ubuntu. The[ MiPi drivers ](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI)which we used previously are also not compatible with Ubuntu.
+
+#### Trying to follow the guide anyway...
+
+{% embed url="https://www.arducam.com/docs/cameras-for-raspberry-pi/migrated/ov9281-1mp-global-shutter-raspberrypi-camera/" %}
+
+1. The overlays are in a slightly different location : `ls /boot/firmware/overlays/ov9281.dtbo`
+2. As is the config file: `sudo nano /boot/firmware/config.txt`
+3. **Does output successfully on this command  and publish using cam2image**.`v4l2-ctl --stream-mmap --stream-count=-1 -d /dev/video0 --stream-to=/dev/null`
+
+When trying to run the ros node it seems like the pixel and encoding formats are not supported, presumably because it is greyscale?
 
 ## Image\_tools
 
