@@ -1,5 +1,5 @@
 ---
-description: Testing streaming to laptop
+description: Testing streaming from Rpi4 with Ubuntu Server 20.04 to laptop
 ---
 
 # Pi camera
