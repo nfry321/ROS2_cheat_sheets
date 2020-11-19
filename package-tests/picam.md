@@ -121,11 +121,17 @@ ros2 run image_transport republish compressed --ros-args --remap in/compressed:=
 
 ####  Raspberry Pi Camera Rev 1.3.
 
+{% hint style="info" %}
 Working. Tested all of the above on RPi4 & Ubuntu 20.04.
+{% endhint %}
 
 #### Arducam OV9281 1MP Monochrome Global Shutter Camera 
 
-This suggests that [only Rev. B is compatible with the V4L2 driver ](https://www.arducam.com/product/ov9281-mipi-1mp-monochrome-global-shutter-camera-module-m12-mount-lens-raspberry-pi/)and I have an earlier board, but it appears to be publishing images.
+{% hint style="info" %}
+Publishing, haven't managed to view.
+{% endhint %}
+
+This suggests that [only Rev. B is compatible with the V4L2 driver ](https://www.arducam.com/product/ov9281-mipi-1mp-monochrome-global-shutter-camera-module-m12-mount-lens-raspberry-pi/)and I think I have an earlier board as Rev.B not printed on it, but it appears to be publishing images.
 
 There are [reports](https://www.arducam.com/forums/topic/no-activity-from-ov9281-with-v4l2-ctl-on-rpi-4/) of it not working on Ubuntu. The[ MiPi drivers ](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI)which we used previously are also not compatible with Ubuntu.
 
