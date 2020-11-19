@@ -42,9 +42,6 @@ git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git src/mi
 sudo apt update && rosdep update
 rosdep install --from-path src --ignore-src -y
 
-# On ubuntu server had to install vcs to build (but hadn/t run the update line above)
-sudo apt-get install python3-vcstool
-
 ros2 run micro_ros_setup create_agent_ws.sh
 ros2 run micro_ros_setup build_agent.sh
 source install/local_setup.sh
@@ -52,9 +49,9 @@ ros2 run micro_ros_agent micro_ros_agent serial --dev [device] -v6
 ```
 
 {% hint style="warning" %}
-On Pi3 line 11 takes a verrry long timer \(does it even complete?\)
+On Pi3 build agent takes a verrry long timer \(does it even complete?\)
 
-On Pi4 line 11 took 20 mins.
+On Pi4 build agent took 20 mins.
 {% endhint %}
 
 Replace `[device]` with the result of `ls /dev/serial/by-id/*` this means even if the device number changes when disconnecting it will find the device via the name.
@@ -102,5 +99,39 @@ Presumably links to this tip in a [tutorial](https://micro-ros.github.io/docs/tu
 
 _**TIP:** Alternatively, you can use a docker container with a fresh ROS 2 Foxy installation. The one that serves the purpose is the container run by the command:_
 
+### Message creation
 
+[https://micro-ros.github.io/docs/tutorials/core/programming\_rcl\_rclc/](https://micro-ros.github.io/docs/tutorials/core/programming_rcl_rclc/)
+
+The string `Hello World!` can be assigned directly to the message of the publisher `pub_msg.data`. First the publisher message is initialized with `std_msgs__msg__String__init`. Then you need to allocate memory for `pub_msg.data.data`, set the maximum capacity `pub_msg.data.capacity` and set the length of the message `pub_msg.data.size` accordingly. You can assign the content of the message with `snprintf` of `pub_msg.data.data`.
+
+```text
+  // assign message to publisher
+  std_msgs__msg__String__init(&pub_msg);
+  const unsigned int PUB_MSG_CAPACITY = 20;
+  pub_msg.data.data = malloc(PUB_MSG_CAPACITY);
+  pub_msg.data.capacity = PUB_MSG_CAPACITY;
+  snprintf(pub_msg.data.data, pub_msg.data.capacity, "Hello World!");
+  pub_msg.data.size = strlen(pub_msg.data.data);
+```
+
+### 
+
+### Not Enough memory in buffer issue.
+
+When sending longer values you may get an error. Check this [issue](https://github.com/micro-ROS/micro_ros_arduino/issues/23) - you need to initialise your message properly. and update the size when you use it.
+
+```cpp
+// Init
+std_msgs__msg__String msg;
+msg.data.data = (char*)malloc(200*sizeof(char));
+msg.data.size = 0;
+msg.data.capacity = 200;
+
+// Use
+char my_str[] = "TEST";
+memcpy(msg.data.data, my_str, strlen(my_str));
+msg.data.size = strlen(msg.data.data);
+rcl_publish(&publisher, &msg, NULL);
+```
 
