@@ -86,10 +86,6 @@ And finally you can run the camera node:
 $ ros2 run v4l2_camera v4l2_camera_node
 ```
 
-```text
-ros2 run v4l2_camera v4l2_camera_node --ros-args -p pixel_format:=GREY -p output_encoding:=mono8
-```
-
 ### Receiving side
 
 View the camera output, for instance by running the RQT image viewer: 
@@ -98,7 +94,7 @@ View the camera output, for instance by running the RQT image viewer:
 ros2 run rqt_image_view rqt_image_view
 ```
 
-For me this ground to a halt very quickly with the raw data. To view the compressed images you need to install the plugins mentioned in the [readme](https://gitlab.com/boldhearts/ros2_v4l2_camera/-/tree/foxy#compressed-transport). 
+For me this ground to a halt very quickly with the raw data. To view the compressed images you need to install the plugins mentioned in the [readme](https://gitlab.com/boldhearts/ros2_v4l2_camera/-/tree/foxy#compressed-transport) \(already done if followed the article above\). 
 
 ```text
 $ cd path/to/workspace
@@ -177,8 +173,6 @@ ros2 run image_tools cam2image
 On RPi with pi cam: Had to install the image\_tools package, so not included in basic ros install.
 
 `sudo apt-get install ros-foxy-image-tools` 
-
-This 'works', the images are published and I can subscribe and see them for a bit but showimage freezes very quickly. 
 
 ## Other Options
 
