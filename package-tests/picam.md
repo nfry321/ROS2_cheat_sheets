@@ -26,7 +26,7 @@ Quick google & check of ros index reveals 3 possible packages:
 
 The 3rd link was found in an [issue](https://github.com/christianrauch/raspicam2_node/issues/11#issuecomment-699931002) in the 2nd link and is both more recently updated and is using a more generic method so maybe useful for other cameras too. Therefore trying that one first.
 
-## V4l install
+## V4L install
 
 It is using video4linux, so first install this
 
