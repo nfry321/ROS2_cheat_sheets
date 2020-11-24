@@ -12,6 +12,8 @@ You need to edit this file using: `sudo nano /boot/firmware/config.txt`
 
 Then add `start_x=1` at the end. Save and reboot. 
 
+\(I tried adding it to usercfg.txt but device was not found.\)
+
 ## ROS2 Package Options
 
 Quick google & check of ros index reveals 3 possible packages:
@@ -84,6 +86,10 @@ And finally you can run the camera node:
 $ ros2 run v4l2_camera v4l2_camera_node
 ```
 
+```text
+ros2 run v4l2_camera v4l2_camera_node --ros-args -p pixel_format:=GREY -p output_encoding:=mono8
+```
+
 ### Receiving side
 
 View the camera output, for instance by running the RQT image viewer: 
@@ -114,36 +120,48 @@ ros2 run image_transport republish compressed in/compressed:=image_raw/compresse
 If you remap to `/image` topic then you can use `ros2 run image_tools showimage` to view.
 
 ```text
-ros2 run image_transport republish compressed --ros-args --remap in/compressed:=image_raw/compressed raw --remap out:=image
+ros2 run image_transport republish compressed --ros-args --remap in/compressed:=image_raw/compressed --remap out:=image
 ```
 
 ### Camera Type
 
-####  Raspberry Pi Camera Rev 1.3.
-
-{% hint style="success" %}
-Working. Tested all of the above on RPi4 & Ubuntu 20.04.
-{% endhint %}
-
-#### Arducam OV9281 1MP Monochrome Global Shutter Camera 
+###  Raspberry Pi Camera Rev 1.3.
 
 {% hint style="warning" %}
-Publishing, haven't managed to view.
+Working. Tested all of the above on RPi4 & Ubuntu 20.04.
+
+EDIT: after trying out the Arducam this no longer seems to work, i have removed the overlay, the device shows, the node starts but does not seem to publish. Trying cam2image I get a warning about gstreamer pipeline not starting and it does not publish. The arducam still does though, if i add the overlay back in.
 {% endhint %}
 
-This suggests that [only Rev. B is compatible with the V4L2 driver ](https://www.arducam.com/product/ov9281-mipi-1mp-monochrome-global-shutter-camera-module-m12-mount-lens-raspberry-pi/)and I think I have an earlier board as Rev.B not printed on it, but it appears to be publishing images.
+### Arducam OV9281 1MP Monochrome Global Shutter Camera 
 
-There are [reports](https://www.arducam.com/forums/topic/no-activity-from-ov9281-with-v4l2-ctl-on-rpi-4/) of it not working on Ubuntu. The[ MiPi drivers ](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI)which we used previously are also not compatible with Ubuntu.
+{% hint style="success" %}
+Works
+{% endhint %}
 
-#### Trying to follow the guide anyway...
+#### Follow the guide:
 
 {% embed url="https://www.arducam.com/docs/cameras-for-raspberry-pi/migrated/ov9281-1mp-global-shutter-raspberrypi-camera/" %}
 
+Note these changes on Ubuntu 20.04:
+
 1. The overlays are in a slightly different location : `ls /boot/firmware/overlays/ov9281.dtbo`
 2. As is the config file: `sudo nano /boot/firmware/config.txt`
-3. **Does output successfully on this command  and publish using cam2image**.`v4l2-ctl --stream-mmap --stream-count=-1 -d /dev/video0 --stream-to=/dev/null`
+3. Does output successfully on this command`v4l2-ctl --stream-mmap --stream-count=-1 -d /dev/video0 --stream-to=/dev/null`
 
-When trying to run the ros node it seems like the pixel and encoding formats are not supported, presumably because it is greyscale?
+The monochrome format was not supported originally but I logged an [issue](https://gitlab.com/boldhearts/ros2_v4l2_camera/-/issues/27) and have [fixed](https://gitlab.com/boldhearts/ros2_v4l2_camera/-/merge_requests/29) it. 
+
+Use this command to run the node:
+
+```text
+ros2 run v4l2_camera v4l2_camera_node --ros-args -p pixel_format:="GREY" -p output_encoding:="mono8"
+```
+
+#### Notes on compatibility
+
+This suggests that [only Rev. B is compatible with the V4L2 driver](https://www.arducam.com/product/ov9281-mipi-1mp-monochrome-global-shutter-camera-module-m12-mount-lens-raspberry-pi/), Rev.B not printed on my board but it works.
+
+There are [reports](https://www.arducam.com/forums/topic/no-activity-from-ov9281-with-v4l2-ctl-on-rpi-4/) of it not working on Ubuntu, but again it worked for me. The[ MiPi drivers ](https://github.com/ArduCAM/MIPI_Camera/tree/master/RPI)which we used previously are also not compatible with Ubuntu.
 
 ## Image\_tools
 
