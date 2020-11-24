@@ -20,7 +20,7 @@ ROS2 Basics
 Package Tests 
 
 * [Teleop](package-tests/teleop.md)
-* Pi Camera Streaming
+* [Pi Camera Streaming](package-tests/picam.md)
 * [Micro-ros for Arduino](package-tests/micro-ros-for-arduino-ide.md)
 
 
