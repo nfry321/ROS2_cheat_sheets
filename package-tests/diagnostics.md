@@ -6,7 +6,7 @@ description: Seems sensible
 
 When looking into sending status info back from a micro-ros node I started to look into the diagnostic messages, and it turns out there are lots of tools for using these. As it seems like something we want to build in from the start I'm recording what I learn here. 
 
-[Wiki with documentation](http://wiki.ros.org/diagnostics). There is a [ROS2 foxy ](https://github.com/ros/diagnostics/tree/foxy)branch on the repo. 
+[Wiki with documentation](http://wiki.ros.org/diagnostics). [REP](https://www.ros.org/reps/rep-0107.html) has good details. There is a [ROS2 foxy ](https://github.com/ros/diagnostics/tree/foxy)branch on the repo. 
 
 There are a number of [associated tools](http://wiki.ros.org/diagnostics) all in various states in relation to ROS2.
 
@@ -22,7 +22,7 @@ This is a simple way of viewing the raw diagnostic data. As the robot gets more 
 
 As of 02/12/2020 there is a [merge request](https://github.com/ros-visualization/rqt_runtime_monitor/pull/5) to make this work in ROS2 but it has not been approved. 
 
-I tested the [forked code ](https://github.com/pjreed/rqt_runtime_monitor/tree/dashing-devel)
+I tested the [forked code: ](https://github.com/pjreed/rqt_runtime_monitor/tree/dashing-devel)
 
 ```text
 $ cd ros_ws/src
@@ -32,13 +32,13 @@ $ colcon build --packages-select rqt_runtime_monitor
 $ source ~/ros2_ws/install/local_setup.bash
 ```
 
-To run I had to 'force discover' as it was not found first time.
+To run I had to 'force discover' as it was not found first time. After the first run this is not required and it can also be accessed via the plugins menu when running `rqt`.
 
 ```text
 $ ros2 run rqt_runtime_monitor rqt_runtime_monitor --force-discover
 ```
 
-This works great and is all that is currently needed with the handful of messages I have. When pressing the deadmans switch on my controller I see the status switch between Ok and Warning states.
+This works great and is all that is currently needed with the handful of messages I have. When pressing the deadmans switch on my controller I see the corresponding status switch between Ok and Warning states.
 
 ![rqt\_runtime\_moitor on ROS2. ](../.gitbook/assets/screenshot-from-2020-12-02-15-46-09.png)
 
