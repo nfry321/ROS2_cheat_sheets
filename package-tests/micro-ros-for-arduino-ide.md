@@ -135,3 +135,25 @@ msg.data.size = strlen(msg.data.data);
 rcl_publish(&publisher, &msg, NULL);
 ```
 
+### Custom Messages
+
+{% embed url="https://github.com/micro-ROS/micro\_ros\_arduino/issues/14\#issuecomment-722242175" caption="Use these instructions" %}
+
+First clone the repo.
+
+As we have a repo of our custom messages, go to `extras/library_generation/extra_packages` and edit the `extra_packages.repos` to point to that that.
+
+build:
+
+```text
+# Go to this library folder installation
+cd ~/Arduino/libraries/micro_ros_arduino-0.0.1
+
+# Use the docker to build all the necessary stuff:
+docker pull microros/micro_ros_arduino_builder:latest
+# build just for Teensy 3
+docker run -it --rm -v $(pwd):/arduino_project microros/micro_ros_arduino_builder:latest -p teensy3
+```
+
+You should then find your custom msg named in `available_ros2_types`
+

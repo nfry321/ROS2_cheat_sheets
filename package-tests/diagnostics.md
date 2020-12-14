@@ -32,10 +32,10 @@ $ colcon build --packages-select rqt_runtime_monitor
 $ source ~/ros2_ws/install/local_setup.bash
 ```
 
-To run I had to 'force discover' as it was not found first time. After the first run this is not required and it can also be accessed via the plugins menu when running `rqt`.
+To run I had to add  `--force discover` as it was not found first time. After the first run this is not required and it can also be accessed via the plugins menu when running `rqt`.
 
 ```text
-$ ros2 run rqt_runtime_monitor rqt_runtime_monitor --force-discover
+$ ros2 run rqt_runtime_monitor rqt_runtime_monitor 
 ```
 
 This works great and is all that is currently needed with the handful of messages I have. When pressing the deadmans switch on my controller I see the corresponding status switch between Ok and Warning states.
