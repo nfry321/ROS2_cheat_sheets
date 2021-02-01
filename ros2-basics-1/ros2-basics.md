@@ -1041,7 +1041,7 @@ $ cd ros2_ws/src/
 $ ros2 pkg create my_robot_bringup
 $ cd my_robot_bringup
 $ rm -rf include/
-$ rm -fr src/
+$ rm -rf src/
 $ mkdir launch
 ```
 

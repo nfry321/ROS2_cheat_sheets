@@ -80,7 +80,7 @@ RCCHECK(rclc_node_init_with_options(&node, "my_node_name", "", &support, &node_o
 
 
 
-### docker agent
+### docker agentlinux
 
 The [readme](https://github.com/micro-ROS/micro_ros_arduino#how-to-use-the-precompiled-library) gives an example of an agent using docker. I got this to connect to the teensy, ~~but unsure how/if it can connect to the rest of ROS2.~~ Probably fixed by the domain id issue, but not tried.
 
@@ -143,6 +143,18 @@ First clone the repo.
 
 As we have a repo of our custom messages, go to `extras/library_generation/extra_packages` and edit the `extra_packages.repos` to point to that that.
 
+```text
+repositories:
+  control_msgs:
+    type: git
+    url: https://github.com/ros-controls/control_msgs
+    version: foxy-devel
+  pipebot_msgs:
+    type: git
+    url: https://github.com/pipebots/pipebot-msgs.git
+    version: nfry321-sprintbot-leds
+```
+
 build:
 
 ```text
@@ -156,4 +168,6 @@ docker run -it --rm -v $(pwd):/arduino_project microros/micro_ros_arduino_builde
 ```
 
 You should then find your custom msg named in `available_ros2_types`
+
+To get this into the arduino IDE; Zip the folder and add in using Sketch &gt; Include Library &gt; Add .zip library. You will need to delete the existing one from your Arduino/libraries folder. 
 
