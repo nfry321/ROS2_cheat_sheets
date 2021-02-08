@@ -16,12 +16,14 @@ ROS2 Basics
 * [Installing Packages](ros2-basics-1/installing-packages.md)
 * [Install on RPi](ros2-basics-1/install-on-rpi.md)
 * [Run on Multiple Machines](ros2-basics-1/run-on-multiple-platforms.md)
+* [CI with GitHub actions](ros2-basics-1/github-actions.md)
 
 Package Tests 
 
 * [Teleop](package-tests/teleop.md)
 * [Pi Camera Streaming](package-tests/picam.md)
 * [Micro-ros for Arduino](package-tests/micro-ros-for-arduino-ide.md)
+* [Diagnostics](package-tests/diagnostics.md)
 
 
 
