@@ -18,3 +18,7 @@
 * [Micro-Ros for Arduino IDE](package-tests/micro-ros-for-arduino-ide.md)
 * [Diagnostics](package-tests/diagnostics.md)
 
+---
+
+* [Github actions](github-actions.md)
+
