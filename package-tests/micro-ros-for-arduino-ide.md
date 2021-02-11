@@ -143,6 +143,8 @@ First clone the repo.
 
 As we have a repo of our custom messages, go to `extras/library_generation/extra_packages` and edit the `extra_packages.repos` to point to that that.
 
+This has now been done on our fork so just clone this: [https://github.com/pipebots/micro\_ros\_arduino/tree/pipebots-foxy](https://github.com/pipebots/micro_ros_arduino/tree/pipebots-foxy) 
+
 ```text
 repositories:
   control_msgs:
@@ -152,7 +154,7 @@ repositories:
   pipebot_msgs:
     type: git
     url: https://github.com/pipebots/pipebot-msgs.git
-    version: nfry321-sprintbot-leds
+    version: main
 ```
 
 build:
