@@ -1155,6 +1155,36 @@ parameters=[
 ]
 ```
 
+### Nested Launch Files
+
+A master launch can call other launch files
+
+
+
+```python
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import ThisLaunchFileDir
+
+def generate_launch_description():
+    ld = LaunchDescription([
+# Include launch file from other package
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory(
+                'another_package'), 'launch', 'name.launch.py')
+            )),
+
+# Include launch file from this package
+        IncludeLaunchDescription(
+          PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/example.launch.py']),
+            launch_arguments={'node_prefix': 'FOO'}.items(),
+        ),
+    ])
+
+    return ld
+```
+
 Recap:
 
 Setup for launch files:
