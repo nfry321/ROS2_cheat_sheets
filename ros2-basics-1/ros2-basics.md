@@ -1098,7 +1098,7 @@ install(DIRECTORY
 )
 ```
 
-launch files are made in the launch folder and are python files named; application\_name.launch.py. Make it executable using chmod +x
+launch files are made in the launch folder and are python files named; application\_name.launch.py. Make it executable using `chmod +x`
 
 ### Template
 
@@ -1157,9 +1157,7 @@ parameters=[
 
 ### Nested Launch Files
 
-A master launch can call other launch files
-
-
+A master launch file can call other launch files:
 
 ```python
 from launch.actions import IncludeLaunchDescription
