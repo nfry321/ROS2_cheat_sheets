@@ -160,7 +160,7 @@ Then `colcon build`
 Can then run with `ros2 run my_py_pkg py_node`
 
 {% hint style="warning" %}
-3 different places where you name the node! Can be different - \(Often the same\)
+4 different places where you name the node! Can be different - \(Often the same\)
 
 File name - can be different from...
 
@@ -1096,6 +1096,14 @@ install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}
 )
+```
+
+If creating launch files in a python package then add this to your `setup.py`
+
+```python
+    data_files=[
+        (os.path.join('share', package_name, 'launch'), glob('launch/*_launch.py')),
+    ],
 ```
 
 launch files are made in the launch folder and are python files named; application\_name.launch.py. Make it executable using `chmod +x`
