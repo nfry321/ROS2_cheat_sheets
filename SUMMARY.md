@@ -11,6 +11,7 @@
 * [Run on Multiple Machines](ros2-basics-1/run-on-multiple-platforms.md)
 * [Using ROS1 Packages](ros2-basics-1/using-ros1-packages.md)
 * [Github actions](ros2-basics-1/github-actions.md)
+* [Rqt\_graph](ros2-basics-1/rqt_graph.md)
 
 ## Package Tests
 
