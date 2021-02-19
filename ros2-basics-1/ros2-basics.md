@@ -1265,7 +1265,7 @@ path = PathJoinSubstitution(substitutions=['path','to',LaunchConfiguration('file
 
 #### LogInfo
 
-Output to terminal. As it is python you can just use `print()` but this will output substitutions too.
+Output to terminal, will output substitutions too.
 
 ```python
 from launch.actions import LogInfo
