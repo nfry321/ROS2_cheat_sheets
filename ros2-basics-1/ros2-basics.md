@@ -1330,6 +1330,25 @@ def generate_launch_description():
 
 ### Remapping
 
+If using name spaces it is likely that you will need to remap topics such that they can access across name spaces. We have decided that publishers should remain within their namespace, so subscribers should remap to match this.
+
+e.g. The hardware drivers are covered by the `platform` namespace, which contains a node for publishing battery info on the topic `battery`, the full topic name is therefore `/platform/battery`. 
+
+The operator feedback nodes are part of the `operator` namespace, and contain a node to subscribe to the topic `battery`. When running this node with no remapping the topic name qualifies as `/operator/battery`. This obviously doesn't match the battery publisher so wouldn't receive any messages.
+
+To sort this the topic of the subscriber should be remapped in the launch file as shown below:
+
+```python
+Node(
+     package="operator_view",
+     executable="battery_sub",
+     namespace="operator",
+     remappings=[
+         ("battery", "/platform/battery"),
+     ],
+),
+```
+
 #### set\_remap
 
 #### 
