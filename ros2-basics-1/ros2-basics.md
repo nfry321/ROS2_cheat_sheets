@@ -1168,6 +1168,8 @@ parameters=[
 A master launch file can call other launch files:
 
 ```python
+import os
+
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import ThisLaunchFileDir
@@ -1190,6 +1192,133 @@ def generate_launch_description():
 
     return ld
 ```
+
+### Launch Arguments
+
+These can be changed at runtime on the command line or via another launch file.
+
+By first creating a `LaunchConfiguration`, which is a type of substitution, this value can then be used later in the file.
+
+```python
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration,
+
+def generate_launch_description():
+
+    # Create the launch configuration variables
+    robot_name = LaunchConfiguration('namespace')
+
+    ld = LaunchDescription([
+
+        DeclareLaunchArgument(
+            'namespace',
+            default_value='',
+            description='Top-level (robot) namespace'
+        ),
+    ])
+```
+
+### Substitutions
+
+There are a number of [substitutions](https://github.com/ros2/launch/tree/master/launch/launch/substitutions) that can be used. The documentation is poor so looking at the source is the best bet. 
+
+#### LaunchConfiguration
+
+This says it outputs as a string but I was unable to use it within `remappings` directly as a string. Above I created `robot_name` as a variable so that it can be used in multiple places in the file. Below the substitution is used directly where needed.
+
+I was able to use it within `arguments` but it requires double square brackets when I was trying it on my raspberryPi and single brackets on my laptop so unsure what is going on there. 
+
+```python
+ def generate_launch_description():
+    ld = LaunchDescription([
+        DeclareLaunchArgument(
+            'uros_port',
+            default_value='/dev/serial/by-id/usb-Teensyduino_USB_Serial_'
+                          '6922840-if00',
+            description='Serial port for micro ros device'
+        ),
+        Node(
+            package='micro_ros_agent',
+            executable='micro_ros_agent',
+            # Double brackets works on Pi
+            arguments=[['serial ',
+                        '--dev ',
+                        LaunchConfiguration('uros_port'),
+                        ' -v6']],
+            # Single brackets works on laptop?!
+            # arguments=['serial',
+            #            '--dev',
+            #            launch.substitutions.LaunchConfiguration('uros_port'),
+            #            '-v6'],
+            # output="screen"
+        ),
+```
+
+#### PathSubstitution
+
+Useful for finding files, I also used it to convert from a `LaunchConfiguration` to string to use in `remappings`. Concatenates the strings with `/` between.
+
+```python
+path = PathJoinSubstitution(substitutions=['path','to',LaunchConfiguration('file'))
+```
+
+#### LogInfo
+
+Output to terminal. As it is python you can just use `print()` but this will output substitutions too.
+
+```python
+from launch.actions import LogInfo
+
+LogInfo(msg=['Hello World...']),
+LogInfo(msg=[path]), # using path sub above
+
+# $ ros2 launch bringup_pkg my_robot.launch.py file:='my_file'
+# Output:
+# [INFO] [launch.user]: Hello World...
+# [INFO] [launch.user]: path/to/my_file
+```
+
+### PushRosNamespace
+
+This is an action from `launch_ros` rather than `launch.actions` - I have no idea why there are different packages with very similar names. 
+
+This applies a namespace to all nodes in it's scope. comments in the source state "It's automatically popped when used inside a scoped `GroupAction`. There's no other way of popping it." If you do not use a GroupAction it will apply to all the nodes, even in nested \(and parent\) launch files. 
+
+```python
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration,
+from launch_ros.actions import Node, PushRosNamespace
+
+def generate_launch_description():
+
+    robot_name = LaunchConfiguration('namespace')
+
+    ld = LaunchDescription([
+        DeclareLaunchArgument(
+            'namespace',
+            default_value='',
+            description='Top-level (robot) namespace'
+        ),
+        GroupAction([
+            PushRosNamespace(namespace=robot_name),
+            Node( # becomes /namespace/node
+            ),
+            Node( # applies to all in group
+            ),
+            IncludesLaunchdescription( # Could also be another launch file
+            ),
+        ])
+    ])
+  return ld
+```
+
+### Remapping
+
+#### set\_remap
+
+#### 
 
 Recap:
 
