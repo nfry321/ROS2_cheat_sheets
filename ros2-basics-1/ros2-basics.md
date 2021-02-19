@@ -1265,7 +1265,7 @@ path = PathJoinSubstitution(substitutions=['path','to',LaunchConfiguration('file
 
 #### LogInfo
 
-Output to terminal, will output substitutions too.
+[Output to terminal](https://github.com/ros2/launch/blob/master/launch/launch/actions/log_info.py), will output substitutions too.
 
 ```python
 from launch.actions import LogInfo
@@ -1281,9 +1281,9 @@ LogInfo(msg=[path]), # using path sub above
 
 ### PushRosNamespace
 
-This is an action from `launch_ros` rather than `launch.actions` - I have no idea why there are different packages with very similar names. 
+This is [an action](https://github.com/ros2/launch_ros/blob/master/launch_ros/launch_ros/actions/push_ros_namespace.py) from `launch_ros` rather than `launch.actions` - I have no idea why there are different packages with very similar names. 
 
-This applies a namespace to all nodes in it's scope. comments in the source state "It's automatically popped when used inside a scoped `GroupAction`. There's no other way of popping it." If you do not use a GroupAction it will apply to all the nodes, even in nested \(and parent\) launch files. 
+This applies a namespace to all nodes in it's scope. Comments in the source state "It's automatically popped when used inside a scoped `GroupAction`. There's no other way of popping it." If you do not use a GroupAction it will apply to all the nodes, even in nested \(and parent\) launch files. 
 
 ```python
 from launch import LaunchDescription
