@@ -8,7 +8,7 @@ description: >-
 
 ## Naming Conventions
 
-Make sure you follow the conventions when creating nodes, messages , topics etc.
+Make sure you follow the conventions when creating nodes, messages, topics etc.
 
 {% embed url="http://wiki.ros.org/ROS/Patterns/Conventions" %}
 
@@ -1082,7 +1082,7 @@ Allows setting of parameter, renaming of nodes at runtime and running of many no
 
 ### Provided
 
-It is possible to launch a launch file provided by a package. When it is provided by a package, the syntax is: \([source](https://index.ros.org/doc/ros2/Tutorials/Launch-Files/Creating-Launch-Files/#ros2-launch)\)
+It is possible to launch a launch file provided by a package. When it is provided by a package, the syntax is \([source](https://index.ros.org/doc/ros2/Tutorials/Launch-Files/Creating-Launch-Files/#ros2-launch)\):
 
 ```text
 ros2 launch <package_name> <launch_file_name>
@@ -1116,7 +1116,7 @@ If creating launch files in a python package then add this to your `setup.py`
 
 ```python
     data_files=[
-        (os.path.join('share', package_name, 'launch'), glob('launch/*_launch.py')),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
     ],
 ```
 
@@ -1274,7 +1274,7 @@ I was able to use it within `arguments` but it requires double square brackets w
 Useful for finding files, I also used it to convert from a `LaunchConfiguration` to string to use in `remappings`. Concatenates the strings with `/` between.
 
 ```python
-path = PathJoinSubstitution(substitutions=['path','to',LaunchConfiguration('file'))
+path = PathJoinSubstitution(substitutions=['path', 'to', LaunchConfiguration('file')])
 ```
 
 #### LogInfo
