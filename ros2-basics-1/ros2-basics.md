@@ -44,10 +44,11 @@ echo "source ~/ros2_ws/install/local_setup.bash" >> ~/.bashrc
 ```
 
 {% hint style="info" %}
-For new setup; install colcon common extensions and source the auto complete bash script
+For new setup; install colcon common extensions and [source](https://colcon.readthedocs.io/en/released/user/installation.html) the auto complete bash script
 
 ```text
 sudo apt install python3-colcon-common-extensions
+echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
 ```
 {% endhint %}
 
